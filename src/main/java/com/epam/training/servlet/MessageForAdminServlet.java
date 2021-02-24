@@ -33,9 +33,9 @@ public class MessageForAdminServlet extends HttpServlet {
             String resultTask = "";
             if (text != "") {
                 userService.message(text, user.getEmail());
-                resultTask = "Сообщение отправлено...";
+                resultTask = ServiceMessage.MESSAGE_SEND;
             } else {
-                resultTask = "Введите ваше сообщение...";
+                resultTask = ServiceMessage.MESSAGE_ENTER;
             }
             req.setAttribute("resultTask", resultTask);
             RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/messageForAdmin.jsp");

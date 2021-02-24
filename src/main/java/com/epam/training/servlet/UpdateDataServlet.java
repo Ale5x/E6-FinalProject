@@ -34,7 +34,7 @@ public class UpdateDataServlet extends HttpServlet {
             String login = req.getParameter("login");
             String email = req.getParameter("email");
             String password = req.getParameter("password");
-            String resultTask = "Данные изменены";
+            String resultTask = ServiceMessage.UPDATE_DATA_USER;
             if (login != "") {
                 user.setLogin(login);
             }
@@ -45,7 +45,7 @@ public class UpdateDataServlet extends HttpServlet {
                 user.setPassword(password);
             }
             if (login == "" || email == "" || password == "") {
-                resultTask = "Пустые поля... Для изменения личных данных заполните одно поля";
+                resultTask = ServiceMessage.UPDATE_DATA_USER_EMPTY_ALL_LINE;
             }
             userService.updateDataUser(user);
             req.setAttribute("resultTask", resultTask);
@@ -64,7 +64,6 @@ public class UpdateDataServlet extends HttpServlet {
             String delete = req.getParameter("deletePage");
             if (!validator.isNull(delete)) {
                 userService.removeAccount(user.getUserId());
-                System.out.println("Delete page");
             }
             user = null;
             session.setAttribute("user", user);

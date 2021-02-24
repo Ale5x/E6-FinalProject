@@ -41,13 +41,13 @@ public class ActionUserServlet extends HttpServlet {
             if (idForm != "") {
                 if (!validator.isNull(deleteForm)) {
                     userService.removeAccount(Long.parseLong(idForm));
-                    resultTask = "Пользователь удалён...";
+                    resultTask = ServiceMessage.USER_DELETE;
                 } else if (!validator.isNull(addAdminForm)) {
                     userService.updateAccessUser(user, Long.parseLong(idForm), true);
-                    resultTask = "Пользователь добавлен в администраторы...";
+                    resultTask = ServiceMessage.USER_ADD_FOR_ADMIN;
                 } else if (!validator.isNull(addUserForm)) {
                     userService.updateAccessUser(user, Long.parseLong(idForm), false);
-                    resultTask = "Пользователь убран из администраторов и добавлен в пользователи...";
+                    resultTask = ServiceMessage.USER_REMOVED_FROM_ADMIN;
                 }
             }
             req.setAttribute("resultTask", resultTask);

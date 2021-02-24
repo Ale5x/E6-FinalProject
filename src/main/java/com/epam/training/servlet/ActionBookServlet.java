@@ -34,7 +34,7 @@ public class ActionBookServlet extends HttpServlet {
             String resultTask = "";
             if (bookId != "") {
                 bookService.removeBook(user, Long.parseLong(bookId));
-                resultTask = "Книга успешна удалена";
+                resultTask = ServiceMessage.BOOK_DELETE;
                 req.setAttribute("resultTask", resultTask);
             }
             RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/actionBook.jsp");
@@ -56,7 +56,7 @@ public class ActionBookServlet extends HttpServlet {
             String resultTask = "";
             if (bookId != "" & author != "" & title != "" & type != "") {
                 bookService.updateBook(user, new Book(author, title, type), Long.parseLong(bookId));
-                resultTask = "Данные книги успешно обновлены...";
+                resultTask = ServiceMessage.UPDATE_DATA_BOOK;
                 req.setAttribute("resultTask", resultTask);
             }
             RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/actionBook.jsp");

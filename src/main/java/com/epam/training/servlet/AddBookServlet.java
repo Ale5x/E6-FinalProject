@@ -36,7 +36,7 @@ public class AddBookServlet extends HttpServlet {
             String resultTask = "";
             if (author != "" && title != "" && type != "") {
                 bookService.addBook(user, new Book(author, title, type));
-                resultTask = "Книга добавлена в библиотеку...";
+                resultTask = ServiceMessage.BOOK_ADD;
                 req.setAttribute("resultTask", resultTask);
                 RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/actionBook.jsp");
                 dispatcher.forward(req, resp);

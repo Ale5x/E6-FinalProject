@@ -1,11 +1,9 @@
 package com.epam.training.model;
 
-import com.epam.training.servlet.ActionBookServlet;
+import com.epam.training.security.Cipher;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class User {
@@ -78,18 +76,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            byte[] bytes = digest.digest(password.getBytes());
-            StringBuilder passwordCipher = new StringBuilder();
-            for (byte b : bytes) {
-                passwordCipher.append(String.format("%02X", b));
-            }
-            this.password =  passwordCipher.toString();
-        }catch (NoSuchAlgorithmException e) {
-            logger.error("Method Password... Error build password... Password: " + password);
-            logger.error(e);
-        }
+        this.password = Cipher.setCipherString(password);
     }
 
     public String getPasswordCipher() {

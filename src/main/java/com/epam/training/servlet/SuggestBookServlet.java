@@ -36,7 +36,7 @@ public class SuggestBookServlet extends HttpServlet {
             String text = req.getParameter("text");
 
             userService.suggestBookMessage(user, new Book(author, title, type), text);
-            String resultTask = "Сообщение отправлено...";
+            String resultTask = ServiceMessage.MESSAGE_SEND;
             req.setAttribute("resultTask", resultTask);
             RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/home.jsp");
             dispatcher.forward(req, resp);

@@ -64,7 +64,7 @@ public class SearchBookServlet extends HttpServlet {
                 req.setAttribute("countResult", countResult);
                 req.setAttribute("listResult", result);
             } else {
-                String resultTask = "Пустые поля, заполните все поля";
+                String resultTask = ServiceMessage.EMPTY_LINE;
                 req.setAttribute("resultTask", resultTask);
                 resp.sendRedirect("jsp/messagePage.jsp");
             }

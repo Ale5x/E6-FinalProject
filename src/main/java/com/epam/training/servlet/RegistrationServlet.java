@@ -36,21 +36,20 @@ public class RegistrationServlet extends HttpServlet {
                     boolean result = false;
                     result = userService.registrationUser(email, login, password);
                     if (result) {
-                        resultTask = "Регистрация прошла успешна. Войдите в систему...";
+                        resultTask = ServiceMessage.REGISTRATION_SUCCESSFUL;
                     } else {
-                        resultTask = "Email занят...";
+                        resultTask = ServiceMessage.EMAIL_BUSY;
                     }
                     req.setAttribute("resultTask", resultTask);
                 }
                 if(!validator.isPassword(password)) {
-                    resultTask = "Ошибка.\nПароль указан некорректно... Пароль должен быть из минимум шести символов, " +
-                            "минимум одна буква и одна цифра...";
+                    resultTask = ServiceMessage.REGISTRATION_PASSWORD_ERROR;
                 }
                 if(!validator.isEmail(email)) {
-                    resultTask = "Ошибка.\nEmail указан некорректно...";
+                    resultTask = ServiceMessage.REGISTRATION_EMAIL_ERROR;
                 }
             } else {
-                resultTask = "Для регистрации необходимо заполнить все поля...";
+                resultTask = ServiceMessage.REGISTRATION_EMPTY_LINE_ERROR;
             }
             req.setAttribute("resultTask", resultTask);
             RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/messagePage.jsp");

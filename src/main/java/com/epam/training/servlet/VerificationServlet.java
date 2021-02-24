@@ -49,7 +49,7 @@ public class VerificationServlet extends HttpServlet {
                 RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/home.jsp");
                 dispatcher.forward(req, resp);
             } else {
-                String resultTask = "Неправильный логин или пароль! Зарегистрируйтесь, чтобы войти в систему...";
+                String resultTask = ServiceMessage.VERIFICATION_ERROR;
                 req.setAttribute("resultTask", resultTask);
                 RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/messagePage.jsp");
                 dispatcher.forward(req, resp);
